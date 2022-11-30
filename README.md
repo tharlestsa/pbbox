@@ -5,3 +5,10 @@ Command to create a bbox from a point.
 pip install git+https://github.com/tharlestsa/point-bbox
 
 sudo ln -s <path_to_project>/point_bbox/point_bbox/point_bbox.py /usr/bin/bbox
+
+## Usage
+
+```
+bbox --lon -58.1705 --lat -5.7737 --size 100
+#output: -6475610.43919012,-643915.8842913482,-6475410.43919012,-643715.8842913482
+```
