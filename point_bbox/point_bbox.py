@@ -18,15 +18,17 @@ parser.add_argument('--crs_to', type=str,  nargs='?', default='epsg:900913', hel
 
 parser.add_argument('--size', default=4000,  nargs='?', type=int, help='Size of the bbox in meters')
 
+def calc_bbox():
+    # Execute parse_args()
+    args = parser.parse_args()
+    # "epsg:4326", "epsg:900913"
+    crs_from = args.crs_from
+    crs_to = args.crs_to
+    transformer = Transformer.from_crs(crs_from, crs_to, always_xy=True)
+    x, y = transformer.transform(args.lon, args.lat)
+    buffer = Point(x, y).buffer(args.size)
+    return buffer.bounds
 
-# Execute parse_args()
-args = parser.parse_args()
-# "epsg:4326", "epsg:900913"
-crs_from = args.crs_from
-crs_to = args.crs_to
-transformer = Transformer.from_crs(crs_from, crs_to, always_xy=True)
-x, y = transformer.transform(args.lon, args.lat)
-buffer = Point(x, y).buffer(args.size)
-bbox = buffer.bounds
-
-print(f"{bbox[0]},{bbox[1]},{bbox[2]},{bbox[3]}")
+if __name__ == "__main__":
+    bbox = calc_bbox()
+    print(f"{bbox[0]},{bbox[1]},{bbox[2]},{bbox[3]}")
