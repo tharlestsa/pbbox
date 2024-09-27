@@ -6,7 +6,7 @@ authors = ["Tharles de Sousa Andrade <irtharles@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-pyproj = "^3.4.0"
+pyproj = "^3.6.1"
 shapely = "^1.8.5"
 
 [tool.poetry.dev-dependencies]
